@@ -113,21 +113,26 @@ export class SchedulePage {
           content: `<h5>${markerData.sessions.name}</h5>`
           //content: `<h5>jksajksa</h5>`
         });
+
+        for( var i in markerData.sessions){
+            console.log( markerData.sessions[i].name);
+            let latlngg = new google.maps.LatLng(markerData.sessions[0].lat, markerData.sessions[0].lng)
+   
+            let marker = new google.maps.Marker({ 
+              position: latlngg, 
+              map: map,
+              title: "vasa"
+          });
+
+            marker.addListener('click', () => {
+            infoWindow.open(map, marker);
+            });
+        }
         console.log(markerData);
         console.log("separador");
         console.log(markerData.sessions[0].lat, markerData.sessions[0].lng);
         
-        let latlngg = new google.maps.LatLng(markerData.sessions[0].lat, markerData.sessions[0].lng)
-   
-        let marker = new google.maps.Marker({ 
-          position: latlngg, 
-          map: map,
-          title: "vasa"
-        });
 
-        marker.addListener('click', () => {
-          infoWindow.open(map, marker);
-        });
       }); 
 
       google.maps.event.addListenerOnce(map, 'idle', () => {
