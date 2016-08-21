@@ -162,15 +162,12 @@ export class ConferenceData {
 
   getMap() {
     return this.load().then(data => {
-      console.log("ya jalo");
-      console.log(data.gps.sort());
       return data.map;
     });
   }
   getMapa(){
     return this.load().then(data => {
       console.log("ya jalo");
-      console.log(data.schedule.groups.sessions.gps);
       console.log(data.schedule.groups.sessions.gps);
       
       

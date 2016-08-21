@@ -6,10 +6,12 @@ import { ConferenceData } from '../../providers/conference-data';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { SessionDetailPage } from '../session-detail/session-detail';
 import { UserData } from '../../providers/user-data';
+import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
 
 
 @Component({
-  templateUrl: 'build/pages/schedule/schedule.html'
+  templateUrl: 'build/pages/schedule/schedule.html',
+  providers:[ConnectivityService]
 })
 export class SchedulePage {
   // the list is a child of the schedule page
@@ -24,6 +26,8 @@ export class SchedulePage {
   excludeTracks = [];
   shownSessions = [];
   groups = [];
+  mapInitialised: any = false;
+  apiKey= "AIzaSyD7BXEn82KJvMu1GaO_hGDIWpOT-N6o4zw";
 
   constructor(
     public alertCtrl: AlertController,
@@ -31,39 +35,139 @@ export class SchedulePage {
     public modalCtrl: ModalController,
     public navCtrl: NavController,
     public confData: ConferenceData,
-    public user: UserData
+    public user: UserData,
+    private connectivityService: ConnectivityService
   ) {
 
   }
-    ionViewLoaded() {
+    ngOnInit() {
+    // this.loadMap();
+    this.loadGoogleMaps();
+  }
+
+    loadGoogleMaps() {
+
+    this.addConnectivityListeners();
+
+    if (typeof google == "undefined" || typeof google.maps == "undefined") {
+
+      console.log("Google maps JavaScript needs to be loaded.");
+      this.disableMap();
+
+      if (this.connectivityService.isOnline()) {
+        console.log("online, loading map");
+
+        //Load the SDK
+        window['mapInit'] = () => {
+          this.initMap();
+          this.enableMap();
+        }
+
+        let script = document.createElement("script");
+        script.id = "googleMaps";
+
+        if (this.apiKey) {
+          script.src = 'http://maps.googleapis.com/maps/api/js?key=' + this.apiKey + '&callback=mapInit';
+        } else {
+          script.src = 'http://maps.googleapis.com/maps/api/js?callback=mapInit';
+        }
+
+        document.body.appendChild(script);
+
+      }
+    }
+    else {
+
+      if (this.connectivityService.isOnline()) {
+        console.log("showing map");
+        this.initMap();
+        this.enableMap();
+      }
+      else {
+        console.log("disabling map");
+        this.disableMap();
+      }
+    }
+  }
+
+
+    initMap() {
     this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(mapData => {
+      this.mapInitialised = true;
       let mapEle = document.getElementById('map');
+      console.log(mapData.groups[3].sessions[1].center);
+        let latlng = new google.maps.LatLng(18.952209  , -99.497689)
       let map = new google.maps.Map(mapEle, {
             
-        center: mapData.groups.find(d => d.center),
+        center: latlng, 
         zoom: 16
       });
-
-      mapData.groups.forEach(markerData => {
-        let infoWindow = new google.maps.InfoWindow({
-          content: `<h5>${markerData.name}</h5>`
+      let marker = new google.maps.Marker({ 
+          position: latlng, 
+          map: map,
+          title: "vasa"
         });
 
+        mapData.groups.forEach(markerData => {
+        let infoWindow = new google.maps.InfoWindow({
+          content: `<h5>${markerData.sessions.name}</h5>`
+          //content: `<h5>jksajksa</h5>`
+        });
+        console.log(markerData);
+        console.log("separador");
+        console.log(markerData.sessions[0].lat, markerData.sessions[0].lng);
+        
+        let latlngg = new google.maps.LatLng(markerData.sessions[0].lat, markerData.sessions[0].lng)
+   
         let marker = new google.maps.Marker({ 
-          position: markerData,
+          position: latlngg, 
           map: map,
-          title: markerData.name
+          title: "vasa"
         });
 
         marker.addListener('click', () => {
           infoWindow.open(map, marker);
         });
-      });
+      }); 
 
       google.maps.event.addListenerOnce(map, 'idle', () => {
         mapEle.classList.add('show-map');
       });
     });
+  }
+
+  disableMap() {
+    console.log("disable map");
+  }
+
+  enableMap() {
+    console.log("enable map");
+  }
+
+  addConnectivityListeners() {
+    var me = this;
+
+    var onOnline = () => {
+      setTimeout(() => {
+        if (typeof google == "undefined" || typeof google.maps == "undefined") {
+          this.loadGoogleMaps();
+        } else {
+          if (!this.mapInitialised) {
+            this.initMap();
+          }
+
+          this.enableMap();
+        }
+      }, 2000);
+    };
+
+    var onOffline = () => {
+      this.disableMap();
+    };
+
+    document.addEventListener('online', onOnline, false);
+    document.addEventListener('offline', onOffline, false);
+
   }
 
   ionViewDidEnter() {

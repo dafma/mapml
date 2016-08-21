@@ -48,7 +48,9 @@
       "locator": "https://github.com/apache/cordova-plugin-splashscreen.git",
       "id": "cordova-plugin-splashscreen"
     },
-    "cordova-plugin-crosswalk-webview"
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-device",
+    "cordova-plugin-console"
   ],
   "cordovaPlatforms": [
     "ios",
