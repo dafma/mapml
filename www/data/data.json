@@ -12,7 +12,10 @@
               "timeStart": "8:00 am",
               "timeEnd": "9:00 am",
               "location": "Main hallway",
-              "tracks": ["Food"]
+              "tracks": ["Food"],
+              "lat": -43.07326, 
+              "lng": 89.38335
+          
             }
           ]
         },
@@ -26,7 +29,9 @@
               "speakerNames": ["Ellie Elephant"],
               "timeStart": "9:00 am",
               "timeEnd": "9:30 am",
-              "tracks": ["Ionic"]
+              "tracks": ["Ionic"],
+              "lat": 43.07326, 
+              "lng": -89.38335
             },
             {
               "name": "Getting started with Ionic",
@@ -35,7 +40,9 @@
               "speakerNames": ["Ted Turtle"],
               "timeStart": "9:30 am",
               "timeEnd": "9:45 am",
-              "tracks": ["Ionic"]
+              "tracks": ["Ionic"],
+              "lat": 43.07316, 
+              "lng": -89.38335
             },
             {
               "name": "Tooling for Ionic",
@@ -44,7 +51,9 @@
               "speakerNames": ["Rachel Rabbit"],
               "timeStart": "9:45 am",
               "timeEnd": "10:00 am",
-              "tracks": ["Tooling"]
+              "tracks": ["Tooling"],
+              "lat": 43.07333, 
+              "lng": -89.38335
             }
           ]
         },
@@ -58,7 +67,9 @@
               "speakerNames": ["Eva Eagle", "Lionel Lion"],
               "timeStart": "10:00 am",
               "timeEnd": "10:15 am",
-              "tracks": ["Ionic"]
+              "tracks": ["Ionic"],
+              "lat": 43.07332, 
+              "lng": -89.38335
             },
             {
               "name": "The evolution of Ionicons",
@@ -67,7 +78,9 @@
               "speakerNames": ["Isabella Iguana", "Eva Eagle"],
               "timeStart": "10:15 am",
               "timeEnd": "10:30 am",
-              "tracks": ["Design"]
+              "tracks": ["Design"],
+              "lat": 43.07331, 
+              "lng": -89.38335
             },
             {
               "name": "Ionic.io Services",
@@ -76,7 +89,9 @@
               "speakerNames": ["Charlie Cheetah"],
               "timeStart": "10:30 am",
               "timeEnd": "11:00 am",
-              "tracks": ["Services"]
+              "tracks": ["Services"],
+              "lat": 43.07339, 
+              "lng": -89.38335
             }
           ]
         },
@@ -90,7 +105,9 @@
               "speakerNames": ["Karl Kitten", "Lionel Lion"],
               "timeStart": "11:00 am",
               "timeEnd": "11:45 am",
-              "tracks": ["Workshop"]
+              "tracks": ["Workshop"],
+              "lat": 43.07346, 
+              "lng": -89.38335
             },
             {
               "name": "Community Interaction",
@@ -99,7 +116,10 @@
               "speakerNames": ["Lionel Lion", "Gino Giraffe"],
               "timeStart": "11:30 am",
               "timeEnd": "11:50 am",
-              "tracks": ["Communication"]
+              "tracks": ["Communication"],
+              "center": true,
+              "lat": 43.07335,
+               "lng": -89.38335
             },
             {
               "name": "Navigation in Ionic",
@@ -108,7 +128,9 @@
               "speakerNames": ["Rachel Rabbit", "Eva Eagle"],
               "timeStart": "11:30 am",
               "timeEnd": "12:00 pm",
-              "tracks": ["Navigation"]
+              "tracks": ["Navigation"],
+              "lat": 43.07334, 
+              "lng": -89.38335
             }
           ]
         },
@@ -121,7 +143,9 @@
               "description": "Come grab lunch with all the Ionic fanatics and talk all things Ionic",
               "timeStart": "12:00 pm",
               "timeEnd": "1:00 pm",
-              "tracks": ["Food"]
+              "tracks": ["Food"],
+              "lat": 43.07132, 
+              "lng": -89.38335
             }
           ]
         },
@@ -135,7 +159,9 @@
               "speakerNames": ["Paul Puppy"],
               "timeStart": "1:00 pm",
               "timeEnd": "1:15 pm",
-              "tracks": ["Communication"]
+              "tracks": ["Communication"],
+              "lat": 43.07136, 
+              "lng": -89.38335
             },
             {
               "name": "Ionic Worldwide",
@@ -144,7 +170,9 @@
               "speakerNames": ["Gino Giraffe"],
               "timeStart": "1:15 pm",
               "timeEnd": "1:30 pm",
-              "tracks": ["Communication"]
+              "tracks": ["Communication"],
+              "lat": 43.07836, 
+              "lng": -89.38335
             },
             {
               "name": "The Ionic package service",
@@ -153,7 +181,9 @@
               "speakerNames": ["Molly Mouse", "Burt Bear"],
               "timeStart": "1:30 pm",
               "timeEnd": "2:00 pm",
-              "tracks": ["Services"]
+              "tracks": ["Services"],
+              "lat": 43.07436, 
+              "lng": -89.38335
             }
           ]
         },
@@ -167,7 +197,9 @@
               "speakerNames": ["Burt Bear", "Charlie Cheetah"],
               "timeStart": "2:00 pm",
               "timeEnd": "2:30 pm",
-              "tracks": ["Services"]
+              "tracks": ["Services"],
+              "lat": 43.07336, 
+              "lng": -89.38335
             },
             {
               "name": "Ionic Documentation",
@@ -176,7 +208,9 @@
               "speakerNames": ["Donald Duck"],
               "timeStart": "2:30 pm",
               "timeEnd": "2:45 pm",
-              "tracks": ["Documentation"]
+              "tracks": ["Documentation"],
+              "lat": 43.08336, 
+              "lng": -89.38335
             },
             {
               "name": "UX planning in Ionic",
@@ -185,7 +219,9 @@
               "speakerNames": ["Isabella Iguana", "Ellie Elephant"],
               "timeStart": "2:45 pm",
               "timeEnd": "3:00 pm",
-              "tracks": ["Design"]
+              "tracks": ["Design"],
+              "lat": 43.07336, 
+              "lng": -89.38335
             }
           ]
         },
@@ -199,7 +235,9 @@
               "speakerNames": ["Ted Turtle"],
               "timeStart": "3:00 pm",
               "timeEnd": "3:30 pm",
-              "tracks": ["Angular"]
+              "tracks": ["Angular"],
+              "lat": 43.07336, 
+              "lng": -89.38335
             },
             {
               "name": "Mobile States",
@@ -208,14 +246,15 @@
               "speakerNames": ["Rachel Rabbit"],
               "timeStart": "3:30 pm",
               "timeEnd": "3:45 pm",
-              "tracks": ["Navigation"]
+              "tracks": ["Navigation"],
+              "lat": 43.074395,
+              "lng": -89.38105
             }
           ]
         }
       ]
     }
   ],
-
 
   "speakers": [
     {
@@ -311,7 +350,6 @@
     }
   ],
 
-
   "map": [
     {
       "name": "Monona Terrace Convention Center",
@@ -330,5 +368,4 @@
       "lng": -89.38335
     }
   ]
-
 }

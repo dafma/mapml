@@ -11,7 +11,7 @@ export class MapPage {
 
   ionViewLoaded() {
     this.confData.getMap().then(mapData => {
-      let mapEle = document.getElementById('map');
+      let mapEle = document.getElementById('mape');
 
       let map = new google.maps.Map(mapEle, {
         center: mapData.find(d => d.center),

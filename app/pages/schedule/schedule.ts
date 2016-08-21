@@ -35,6 +35,36 @@ export class SchedulePage {
   ) {
 
   }
+    ionViewLoaded() {
+    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(mapData => {
+      let mapEle = document.getElementById('map');
+      let map = new google.maps.Map(mapEle, {
+            
+        center: mapData.groups.find(d => d.center),
+        zoom: 16
+      });
+
+      mapData.groups.forEach(markerData => {
+        let infoWindow = new google.maps.InfoWindow({
+          content: `<h5>${markerData.name}</h5>`
+        });
+
+        let marker = new google.maps.Marker({ 
+          position: markerData,
+          map: map,
+          title: markerData.name
+        });
+
+        marker.addListener('click', () => {
+          infoWindow.open(map, marker);
+        });
+      });
+
+      google.maps.event.addListenerOnce(map, 'idle', () => {
+        mapEle.classList.add('show-map');
+      });
+    });
+  }
 
   ionViewDidEnter() {
     this.app.setTitle('Schedule');
