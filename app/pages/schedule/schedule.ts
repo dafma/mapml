@@ -1,13 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { AlertController, App, ItemSliding, List, ModalController, NavController } from 'ionic-angular';
-
 import { ConferenceData } from '../../providers/conference-data';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { SessionDetailPage } from '../session-detail/session-detail';
 import { UserData } from '../../providers/user-data';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
-
 
 @Component({
   templateUrl: 'build/pages/schedule/schedule.html',
@@ -37,43 +34,33 @@ export class SchedulePage {
     public confData: ConferenceData,
     public user: UserData,
     private connectivityService: ConnectivityService
-  ) {
+  ) {}
 
-  }
     ngOnInit() {
     // this.loadMap();
     this.loadGoogleMaps();
   }
 
     loadGoogleMaps() {
-
     this.addConnectivityListeners();
-
     if (typeof google == "undefined" || typeof google.maps == "undefined") {
-
       console.log("Google maps JavaScript needs to be loaded.");
       this.disableMap();
-
       if (this.connectivityService.isOnline()) {
         console.log("online, loading map");
-
         //Load the SDK
         window['mapInit'] = () => {
           this.initMap();
           this.enableMap();
         }
-
         let script = document.createElement("script");
         script.id = "googleMaps";
-
         if (this.apiKey) {
           script.src = 'http://maps.googleapis.com/maps/api/js?key=' + this.apiKey + '&callback=mapInit';
         } else {
           script.src = 'http://maps.googleapis.com/maps/api/js?callback=mapInit';
         }
-
         document.body.appendChild(script);
-
       }
     }
     else {
@@ -92,16 +79,15 @@ export class SchedulePage {
 
 
     initMap() {
-    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(mapData => {
+      this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).then(mapData => {
       this.mapInitialised = true;
       let mapEle = document.getElementById('map');
       console.log(mapData.groups[3].sessions[1].center);
-        let latlng = new google.maps.LatLng(18.952209  , -99.497689)
-      let map = new google.maps.Map(mapEle, {
-            
+      let latlng = new google.maps.LatLng(18.952209  , -99.497689)
+      let map = new google.maps.Map(mapEle, {      
         center: latlng, 
         zoom: 16
-      });
+        });
       let marker = new google.maps.Marker({ 
           position: latlng, 
           map: map,
@@ -114,14 +100,18 @@ export class SchedulePage {
           //content: `<h5>jksajksa</h5>`
         });
 
-        for( var i in markerData.sessions){
+        for( let i in markerData.sessions){
+                  let infoWindow = new google.maps.InfoWindow({
+          content: `<h5>${markerData.sessions[i].name}</h5>`
+          //content: `<h5>jksajksa</h5>`
+        });
             console.log( markerData.sessions[i].name);
-            let latlngg = new google.maps.LatLng(markerData.sessions[0].lat, markerData.sessions[0].lng)
+            let latlngg = new google.maps.LatLng(markerData.sessions[i].lat, markerData.sessions[i].lng)
    
             let marker = new google.maps.Marker({ 
               position: latlngg, 
               map: map,
-              title: "vasa"
+              title: "${markerData.sessions[i].name}"
           });
 
             marker.addListener('click', () => {
